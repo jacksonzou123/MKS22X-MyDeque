@@ -31,23 +31,21 @@ public class MyDeque<E>{
     boolean done = false;
     while (index < data.length && !done) {
       if (index == end) {
-        f+= data[index] + ", ";
-        index++;
         done = true;
       }
-      else {
-        f += data[index];
-        index++;
+      if (data[index] != null) {
+        f += data[index] + " ";
       }
+      index++;
     }
     if (!done) {
       index = 0;
-      while (index <= e) {
-        f += data[index] + ", ";
+      while (index <= end) {
+        f += data[index] + " ";
         index++;
       }
     }
-    return f + "]";
+    return f.substring(0,f.length()-1) + "]";
   }
 
   public void addFirst(E element){
@@ -56,19 +54,28 @@ public class MyDeque<E>{
 
   public void addLast(E element){
     resize();
-    e++;
-    if (e == data.length) {
-      e = 0;
+    if (end == data.length) {
+      end = 0;
     }
-    data[e] = element;
+    data[end] = element;
+    end++;
+    size++;
   }
 
-  public E removeFirst(){ }
+  public E removeFirst(){
+    return data[0];
+  }
 
-  public E removeLast(){ }
+  public E removeLast(){
+    return data[0];
+  }
 
-  public E getFirst(){ }
+  public E getFirst(){
+    return data[0];
+  }
 
-  public E getLast(){ }
+  public E getLast(){
+    return data[0];
+  }
 
 }
