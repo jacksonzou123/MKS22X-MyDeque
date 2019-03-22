@@ -49,16 +49,26 @@ public class MyDeque<E>{
   }
 
   public void addFirst(E element){
-
+    resize();
+    if (start == 0) {
+      start = data.length - 1;
+    }
+    else {
+      start--;
+    }
+    data[start] = element;
+    size++;
   }
 
   public void addLast(E element){
     resize();
-    if (end == data.length) {
+    if (end == data.length - 1) {
       end = 0;
     }
+    else {
+      end++;
+    }
     data[end] = element;
-    end++;
     size++;
   }
 
