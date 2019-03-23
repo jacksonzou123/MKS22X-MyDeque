@@ -22,7 +22,28 @@ public class MyDeque<E>{
   }
 
   private void resize(){
-
+    if (size == data.length) {
+      int index = 0;
+      boolean done = false;
+      E[] current = (E[])new Object[size*2];
+      while (start < data.length && !done) {
+        if (start == end) {
+          done = true;
+        }
+        current[index] = data[start];
+        start++;
+        index++;
+      }
+      if (!done) {
+        start = 0;
+        while (start <= end) {
+          current[index] = data[start];
+          index++;
+          start++;
+        }
+      }
+      data = current;
+    }
   }
 
   public String toString(){
@@ -73,19 +94,37 @@ public class MyDeque<E>{
   }
 
   public E removeFirst(){
-    return data[0];
+    E element = data[start];
+    data[start] = null;
+    if (start == data.length) {
+      start = 0;
+    }
+    else {
+      start++;
+    }
+    size--;
+    return element;
   }
 
   public E removeLast(){
-    return data[0];
+    E element = data[end];
+    data[end] = null;
+    if (end == 0) {
+      end = data.length-1;
+    }
+    else {
+      end--;
+    }
+    size--;
+    return element;
   }
 
   public E getFirst(){
-    return data[0];
+    return data[start];
   }
 
   public E getLast(){
-    return data[0];
+    return data[end];
   }
 
 }
