@@ -1,6 +1,8 @@
+import java.util.*;
+
 public class MyDeque<E>{
   private E[] data;
-  private int size, start, end;
+  public int size, start, end;
 
   @SuppressWarnings("unchecked")
   public MyDeque(){
@@ -74,8 +76,12 @@ public class MyDeque<E>{
     return f.substring(0,f.length()-1) + "}";
   }
 
+  public String index() {
+    return "Start: " + start + " End: " + end + " Size: " + size;
+  }
+
   public void addFirst(E element){
-    if (E == null) {
+    if (element == null) {
       throw new NullPointerException();
     }
     resize();
@@ -90,7 +96,7 @@ public class MyDeque<E>{
   }
 
   public void addLast(E element){
-    if (E == null) {
+    if (element == null) {
       throw new NullPointerException();
     }
     resize();
