@@ -43,11 +43,16 @@ public class MyDeque<E>{
         }
       }
       data = current;
+      start = 0;
+      end = size - 1;
     }
   }
 
   public String toString(){
-    String f = "[";
+    if (size == 0) {
+      return "{}";
+    }
+    String f = "{";
     int index = start;
     boolean done = false;
     while (index < data.length && !done) {
@@ -66,10 +71,13 @@ public class MyDeque<E>{
         index++;
       }
     }
-    return f.substring(0,f.length()-1) + "]";
+    return f.substring(0,f.length()-1) + "}";
   }
 
   public void addFirst(E element){
+    if (E == null) {
+      throw new NullPointerException();
+    }
     resize();
     if (start == 0) {
       start = data.length - 1;
@@ -82,6 +90,9 @@ public class MyDeque<E>{
   }
 
   public void addLast(E element){
+    if (E == null) {
+      throw new NullPointerException();
+    }
     resize();
     if (end == data.length - 1) {
       end = 0;
@@ -120,10 +131,16 @@ public class MyDeque<E>{
   }
 
   public E getFirst(){
+    if (size == 0) {
+      throw new NoSuchElementException();
+    }
     return data[start];
   }
 
   public E getLast(){
+    if (size == 0) {
+      throw new NoSuchElementException();
+    }
     return data[end];
   }
 
