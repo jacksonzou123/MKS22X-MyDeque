@@ -80,6 +80,10 @@ public class MyDeque<E>{
     return "Start: " + start + " End: " + end + " Size: " + size;
   }
 
+  public String array() {
+    return Arrays.toString(data);
+  }
+
   public void addFirst(E element){
     if (element == null) {
       throw new NullPointerException();
@@ -89,7 +93,9 @@ public class MyDeque<E>{
       start = data.length - 1;
     }
     else {
-      start--;
+      if (size != 0) {
+        start--;
+      }
     }
     data[start] = element;
     size++;
@@ -104,7 +110,9 @@ public class MyDeque<E>{
       end = 0;
     }
     else {
-      end++;
+      if (size != 0) {
+        end++;
+      }
     }
     data[end] = element;
     size++;
